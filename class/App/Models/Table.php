@@ -15,11 +15,16 @@ abstract class Table
     {
         $this->id = $id;
     }
-
+    /**
+     * @return int| null
+     */
     public function getId(): ?int
     {
         return $this->$id;
     }
+    /**
+     *  @return int | null $id
+     */
 
     public function setId(?int $id): void 
     {
