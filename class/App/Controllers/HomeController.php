@@ -1,14 +1,15 @@
 <?php
 namespace App\Controllers;
 use App\Controllers\Controller;
-use App\Models\Users;
+use App\Models\PictureManager;
+
 
 class HomeController extends Controller{
+
     public function index(){
-        $db = new Users();
-        $user =  $db->usersList();
-        $this->render('./views/template_home.phtml',[$user]);
-        
+        $pic = new PictureManager();
+        $data = $pic->getAll(3);
+        $this->render('./views/template_home.phtml',[$data]);
     }
 
 }

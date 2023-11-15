@@ -1,11 +1,11 @@
 <?php
-//On sauvegarde la chemin de Service dans l'App
 namespace App\Services;
 /**
  * A very simple class router
  * based on $_GET['page']
  */
 class Router{
+
     private $page;
 
     public function __construct(){
@@ -18,6 +18,5 @@ class Router{
 
     public function getPage(){
         return $this->page;
-        
     }
 }
