@@ -11,6 +11,13 @@ class PictureManager
         $this->db = new Database();
     }
 
+   
+    public function insert($data=[])
+    {
+        $addPic = $this->db->query("INSERT INTO picture (title, description, src, author) VALUES (?,?,?,?)",$data);
+        return $addPic;
+    }
+
     public function getAll($nb=null)
     {
         $limit = !is_null($nb) ? "LIMIT " . $nb : "";
@@ -27,11 +34,6 @@ class PictureManager
         return $picture;
     }
 
-    public function insert($data=[])
-    {
-        $addPic = $this->db->query("INSERT INTO picture (title, description, src, author) VALUES (?,?,?,?)",$data);
-        return $addPic;
-    }
 
     public function delete($id=null)
     {
@@ -41,4 +43,12 @@ class PictureManager
         }
         return false;
     }
+
+    public function update($data=[])
+    {
+        
+        $updatepic = $this->db->query("UPDATE picture SET title=?, description=?, src=?, author=?  WHERE id=?",$data);
+       
+        return $updatepic;
+        }
 }

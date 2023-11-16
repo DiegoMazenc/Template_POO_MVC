@@ -1,0 +1,106 @@
+<h1>Pictures</h1>
+<div class="gallery">
+    <?php foreach ($data['pictures'] as $picture) : 
+        $idPicture = $picture['id'];?>
+        <div class="article">
+            <h2 class="titre"><?= $picture['title'] ?></h2>
+            <div class="dropdown optionArticle">
+                <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"></a>
+
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#updatePicture<?= $idPicture ?>">Modifier</a></li>
+                    <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#deletePicture<?= $idPicture ?>">Supprimer</a></li>
+                </ul>
+            </div>
+            <div class="modal fade" id="updatePicture<?= $idPicture ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel"><?= $picture['title'] ?></h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form method="POST">
+                                <div class="mb-3">
+                                    <label for="title" class="form-label">Title</label>
+                                    <input type="text" required class="form-control" id="title" name="title" value="<?= $picture['title'] ?>">
+                                    <label for="description" class="form-label">Description</label>
+                                    <input type="text" required class="form-control" id="description" name="description" value="<?= $picture['description'] ?>">
+                                    <label for="src" class="form-label">Source</label>
+                                    <input type="text" required class="form-control" id="src" name="src" value="<?= $picture['src'] ?>">
+                                    <label for="author" class="form-label">Autheur</label>
+                                    <input type="hidden" name="idPicture" value="<?= $idPicture ?>">
+                                    <input type="text" required class="form-control" id="author" name="author" value="<?= $picture['author'] ?>">
+
+                                </div>
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary" id="update" name="update">Save changes</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="modal fade" id="deletePicture<?= $idPicture ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel"><?= $picture['title'] ?></h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form method="POST">
+                              <p>  Voulez-vous vraiment supprimer votre article sur <?= $picture['title'] ?>? </p>
+                              <input type="text" name="idPicture" value="<?= $idPicture ?>">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                            <button type="submit" class="btn btn-danger" id="delete" name="delete">Supprimer</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="imgGallery">
+                <img src="<?= $picture['src'] ?>" alt="">
+            </div>
+        
+            <p class="desc"><?= $picture['description'] ?></p>
+            <p class="auteur">Auteur : <?= $picture['author'] ?></p>
+        </div>
+    <?php endforeach; ?>
+</div>
+<form method="POST">
+    <div class="mb-3">
+        <label for="title" class="form-label">Title</label>
+        <input type="text" required class="form-control" id="title" name="title" placeholder="Your title">
+        <label for="description" class="form-label">Description</label>
+        <input type="text" required class="form-control" id="description" name="description" placeholder="Your description">
+        <label for="src" class="form-label">Source</label>
+        <input type="text" required class="form-control" id="src" name="src" placeholder="Your Url">
+        <label for="author" class="form-label">Autheur</label>
+        <input type="text" required class="form-control" id="author" name="author" placeholder="Your Name">
+        <button class="mt-4 btn btn-primary" type="submit" id="send" name="submit">Send</button>
+    </div>
+</form>
+
+<!-- Button trigger modal -->
+<!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#updatePicture">
+  Launch demo modal
+</button> -->
+
+<!-- Modal -->
+
+
+<script>
+    const myModal = document.getElementById('myModal')
+    const myInput = document.getElementById('myInput')
+
+    myModal.addEventListener('shown.bs.modal', () => {
+        myInput.focus()
+    })
+</script>

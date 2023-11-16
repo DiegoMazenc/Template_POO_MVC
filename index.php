@@ -11,12 +11,6 @@ require_once("./autoload.php");
 // On détermine quelle est la route ?page
 $router = new Router();
 $page = $router->getPage();
-// On charge le controller correspondant
-// En déterminant le nom du controller ex:HomeController
-$controllerName = 'App\Controllers\\'. ucfirst($page) . 'Controller';
-// On peut déterminer ensuite le fichier à charger
 
-// On instancie la class ex: new HomeController()
-$controller = new $controllerName();
-// On peut exécuter la méthode "index()"
-$controller->index();
+// On lance le routage
+$router->run();

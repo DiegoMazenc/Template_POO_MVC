@@ -12,4 +12,8 @@ class HomeController extends Controller{
         $this->render('./views/template_home.phtml',[$data]);
     }
 
+    public function new(){
+        echo 'coucou';
+    }
+
 }
